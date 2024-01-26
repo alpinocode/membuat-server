@@ -13,6 +13,13 @@ const Kerusakan = db.define('kerusakan', {
             notEmpty: true
         }
     },
+    name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            notEmpty: true
+        }
+    },
     tempat: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -50,6 +57,34 @@ const Kerusakan = db.define('kerusakan', {
         }
     },
     image_4: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            notEmpty: true
+        }
+    },
+    url_1: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            notEmpty: true
+        }
+    },
+    url_2: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            notEmpty: true
+        }
+    },
+    url_3: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            notEmpty: true
+        }
+    },
+    url_4: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
