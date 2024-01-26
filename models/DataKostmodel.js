@@ -40,7 +40,6 @@ const DataKost = db.define('tempatkost', {
         allowNull: false,
         validate: {
             notEmpty: true,
-            notNull: true
         }
     },
     userId: {
