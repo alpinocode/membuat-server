@@ -89,3 +89,43 @@ export const createDataKost = async (req, res) => {
         })
     }
 }
+
+export const updateDataKost = async( req,res ) => {
+    try {
+        const datakost = await DataKost.findOne({
+            where: {
+                uuid: req.params.id
+            }
+        })
+        if(!datakost) return res.status(403).json({message: "data kost tidak ditemukan"})
+        const {nama, alamat, nohp, deskripsi, harga} =req.body
+        if(req.role === "admin") {
+            await DataKost.update({
+                name: nama,
+                alamat: alamat,
+                noHp: nohp,
+                desckripsi: deskripsi,
+                harga: harga
+            },{
+                where: {
+                    id: datakost.id
+                }
+            })
+        } else {
+            if(req.userId !== datakost.userId) return res.status(403).json({ message: "akses terlarang"})
+            await DataKost.update({
+                name: nama,
+                alamat: alamat,
+                noHp: nohp,
+                desckripsi: deskripsi,
+                harga: harga
+            },{
+                where: {
+                    [Op.and]: [{id: datakost.id}, {userId: req.userId}]
+                }
+            })
+        }
+    } catch (error) {
+        
+    }
+}
