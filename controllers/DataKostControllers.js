@@ -125,7 +125,45 @@ export const updateDataKost = async( req,res ) => {
                 }
             })
         }
+        res.status(200).json({message: "update data kost success"})
     } catch (error) {
-        
+        res.status(500).json({
+            message: error.message
+        })        
+    }
+}
+
+export const deleteDataKost = async (req,res) => {
+    try {
+        const datakost = await DataKost.findOne({
+            where: {
+                uuid: req.params.id
+            }
+        })
+        if(!datakost) return res.status(403).json({ message: "datakost tidak ditemukan"})
+        const {nama, alamat, nohp, deskripsi, harga} = req.body
+        if(req.role === "admin") {
+            await DataKost.destroy({
+                name:nama,
+                alamat:alamat,
+                noHp: nohp,
+                desckripsi: deskripsi,
+                harga: harga
+            })
+        } else {
+            if(req.userId !== datakost.userId) return res.status(403).json({message: "akses terlarang"})
+            await DataKost.destroy({
+                where: {
+                    [Op.and]: [{id: datakost.id}, {userId: req.userId}]
+                }
+            })
+        }
+        res.status(200).json({
+            message: "delete data kost success"
+        })
+    } catch (error) {
+        res.status(500).json({
+            message: error.message
+        })
     }
 }
