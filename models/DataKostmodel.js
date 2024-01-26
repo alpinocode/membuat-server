@@ -28,6 +28,13 @@ const DataKost = db.define('tempatkost', {
             notEmpty: true
         }
     },
+    noHp: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            notEmpty: true
+        }
+    },
     harga: {
         type: DataTypes.INTEGER,
         allowNull: false,
