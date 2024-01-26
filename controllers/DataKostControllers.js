@@ -70,3 +70,22 @@ export const getDataKostById = async (req, res) => {
         res.status(500).json({message: error.message})
     }
 }
+
+export const createDataKost = async (req, res) => {
+    const {nama, alamat, nohp, deskripsi, harga} =req.body
+
+    try {
+        await DataKost.create({
+            name: nama,
+            alamat: alamat,
+            noHp: nohp,
+            desckripsi: deskripsi,
+            harga: harga
+        })
+        res.status(200).json({message: "Create datakost success"})
+    } catch (error) {
+        res.status(500).json({
+            message: error.message
+        })
+    }
+}
