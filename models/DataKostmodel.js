@@ -17,7 +17,8 @@ const DataKost = db.define('tempatkost', {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-            notEmpty: true
+            notEmpty: true,
+            len: [2, 150]
         }
     },
     alamat: {
