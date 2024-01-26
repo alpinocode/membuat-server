@@ -13,7 +13,7 @@ const Kerusakan = db.define('kerusakan', {
             notEmpty: true
         }
     },
-    name: {
+    judul: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
