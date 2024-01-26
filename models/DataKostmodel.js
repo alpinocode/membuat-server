@@ -13,6 +13,13 @@ const DataKost = db.define('tempatkost', {
             notEmpty: true
         }
     },
+    nama:{
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            notEmpty: true
+        }
+    },
     alamat: {
         type: DataTypes.STRING,
         allowNull: false,
