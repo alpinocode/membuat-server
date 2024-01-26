@@ -56,34 +56,6 @@ const Perbaikan = db.define('perbaikan', {
             notEmpty: true
         }
     },
-    url_1: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        notEmpty: {
-            notEmpty: true
-        }
-    },
-    url_2: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        notEmpty: {
-            notEmpty: true
-        }
-    },
-    url_3: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        notEmpty: {
-            notEmpty: true
-        }
-    },
-    url_4: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        notEmpty: {
-            notEmpty: true
-        }
-    },
     userId: {
         type: DataTypes.INTEGER,
         allowNull: false,
