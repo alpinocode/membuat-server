@@ -28,7 +28,7 @@ const Perbaikan = db.define('perbaikan', {
             notEmpty: true
         }
     },
-    validaseper: {
+    validasiper: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
