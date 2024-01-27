@@ -108,7 +108,7 @@ export const updatePerbaikan = async(req, res) => {
             uuid: req.params.id
         }
     })
-    if(!perbaikan) return res.status(403).json({ message: "pengguna tidak dapat ditemukan" })
+    if(!perbaikan) return res.status(403).json({ message: "data tidak dapat ditemukan" })
     const {alamat, desc} = req.body
     try {
         if(req.role === "admin"){
@@ -136,3 +136,32 @@ export const updatePerbaikan = async(req, res) => {
     }
 }
 
+export const deletePerbaikan = async (req,res) => {
+    const perbaikan = await Perbaikan.findOne({
+        where: {
+            uuid: req.params.id
+        }
+    })
+    if(!perbaikan) return res.status(403).json({message: "Data perbaikan tidak ditemukan"})
+    try {
+        if(req.role === "admin"){ 
+            await Perbaikan.destroy({
+                where: {
+                    id: perbaikan.id
+                }
+            })
+        }else {
+            if(req.userId !== perbaikan.userId) return res.status(403).json({message: "Akses terlarang"})
+            await Perbaikan.destroy({
+                where: {
+                    [Op.and]: [{id: perbaikan.id}, {userId: req.userId}]
+                }
+            })
+        }
+        res.status(200).json({ message: "Delete Data success"})
+    } catch (error) {
+        res.status(500).json({
+            message: error.message
+        })
+    }
+}
