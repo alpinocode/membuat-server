@@ -1,4 +1,4 @@
-import User from "../models/UserModels";
+import User from "../models/UserModels.js";
 import argon from "argon2"
 
 export const Login = async (req, res) => {
