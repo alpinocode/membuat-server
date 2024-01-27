@@ -86,3 +86,19 @@ export const getPerbaikanById = async(req, res) => {
     }
 }
 
+export const savePerbaikan = async (req,res) => {
+    const {alamat, desk} = req.body
+    try {
+        await Perbaikan.create({
+            alamat: alamat,
+            descper: desk,
+            userId: req.userId
+        })
+        res.status(200).json({ message: "save data success"})
+    } catch (error) {
+       res.status(500).json({
+        message: error.message
+       })
+    }
+}
+
