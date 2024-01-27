@@ -28,7 +28,7 @@ const Kerusakan = db.define('kerusakan', {
             len: [1, 150]
         }
     },
-    validate: {
+    validasi: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
