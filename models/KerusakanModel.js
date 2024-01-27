@@ -35,6 +35,13 @@ const Kerusakan = db.define('kerusakan', {
             notEmpty: true
         }
     },
+    desc: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            notEmpty: true
+        }
+    },
     keterangan: {
         type: DataTypes.STRING,
         allowNull: false,
