@@ -70,4 +70,4 @@ const Perbaikan = db.define('perbaikan', {
 Users.hasMany(Perbaikan)
 Perbaikan.belongsTo(Users, {foreignKey: 'userId'})
 
-export default (Perbaikan)
+export default Perbaikan
