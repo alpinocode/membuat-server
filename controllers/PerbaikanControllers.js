@@ -102,3 +102,37 @@ export const savePerbaikan = async (req,res) => {
     }
 }
 
+export const updatePerbaikan = async(req, res) => {
+    const perbaikan = await Perbaikan.findOne({
+        where: {
+            uuid: req.params.id
+        }
+    })
+    if(!perbaikan) return res.status(403).json({ message: "pengguna tidak dapat ditemukan" })
+    const {alamat, desc} = req.body
+    try {
+        if(req.role === "admin"){
+            await Perbaikan.update({
+                alamat: alamat,
+                descper: desc
+            })
+        } else {
+            if(req.userId !== perbaikan.userId) return res.status(403).json({message: "akses terlarang"})
+            await Perbaikan.update({
+                alamat: alamat,
+                descper: desc
+            },{
+                where: {
+                    id: perbaikan.id
+                }
+            }
+            )
+        }
+        res.status(200).json({message: "update data Success"})
+    } catch (error) {
+        res.status(500).json({
+            message: error.message
+        })
+    }
+}
+
