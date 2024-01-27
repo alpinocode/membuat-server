@@ -2,7 +2,6 @@ import Perbaikan from "../models/PerbaikanModel.js";
 import User from "../models/UserModels.js";
 import DataKost from "../models/DataKostmodel.js";
 import {Op} from "sequelize"
-import Kerusakan from "../models/KerusakanModel.js";
 
 export const GetPerbaikanValidasi = async (req, res) => {
     try {
