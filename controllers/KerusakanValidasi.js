@@ -91,7 +91,7 @@ export const UpdateValidasi = async (req, res) => {
         
         if(req.role === "admin") {
             await Kerusakan.update({
-                validate: valid,
+                validasi: valid,
                 keterangan: ktr
             },{
                 where: {
@@ -101,7 +101,7 @@ export const UpdateValidasi = async (req, res) => {
         } else {
             if(req.role === "user" !== validasi.userId) return res.status(403).json({ message: "akses terlarang"})
             await Kerusakan.update({
-                validate: valid,
+                validasi: valid,
                 keterangan: ktr
             }, {
                 where: {
