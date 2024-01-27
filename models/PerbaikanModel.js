@@ -28,6 +28,13 @@ const Perbaikan = db.define('perbaikan', {
             notEmpty: true
         }
     },
+    validaseper: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            notEmpty: true
+        }
+    },
     descper: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -35,6 +42,7 @@ const Perbaikan = db.define('perbaikan', {
             notEmpty: true
         }
     },
+
     userId: {
         type: DataTypes.INTEGER,
         allowNull: false,
