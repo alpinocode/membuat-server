@@ -8,7 +8,7 @@ export const getPerbaikan = async (req, res) => {
         let response 
         if(!req.role === "admin") {
             response = await Perbaikan.findAll({
-                attributes: ['uuid', 'tempat', 'keterangan', 'image_1', 'image_2', 'image_3', 'image_4'],
+                attributes: ['uuid', 'tempat', 'keterangan','validasiper', 'descper'],
                 order: ['tempat', 'keterangan'],
                 include: {
                     model: User,
@@ -21,7 +21,7 @@ export const getPerbaikan = async (req, res) => {
             })
         } else {
             response = await Perbaikan.findAll({
-                attributes: ['uuid', 'tempat','keterangan', 'image_1','image_2', 'image_3', 'image_4'],
+                attributes: ['uuid', 'tempat', 'keterangan','validasiper', 'descper'],
                 order: ['tempat', 'keterangan'],
                 include: {
                     model: User,
