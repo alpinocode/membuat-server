@@ -44,7 +44,7 @@ export const GetValidasiById = async (req,res) => {
                 uuid: req.params.id
             }
         })
-        if(!validasi) return res.status(403).json({message: "User Tidak dapat ditemukan"})
+        if(!validasi) return res.status(403).json({message: "Data tidak dapat ditemukan"})
         let response;
         if(req.role === "admin"){
             response = await Kerusakan.findAll({
@@ -77,4 +77,42 @@ export const GetValidasiById = async (req,res) => {
         })
     }
 
+}
+
+export const UpdateValidasi = async (req, res) => {
+    try {
+        const validasi = await Kerusakan.findOne({
+            where: {
+                uuid: req.params.id
+            }
+        })
+        if(!validasi) return res.status(403).json({ message: "Data tidak dapat ditemukan"})
+        const {valid, ktr} = req.body
+        
+        if(req.role === "admin") {
+            await Kerusakan.update({
+                validate: valid,
+                keterangan: ktr
+            },{
+                where: {
+                    id: validasi.id
+                }
+            })
+        } else {
+            if(req.role === "user" !== validasi.userId) return res.status(403).json({ message: "akses terlarang"})
+            await Kerusakan.update({
+                validate: valid,
+                keterangan: ktr
+            }, {
+                where: {
+                    [Op.and]: [{id: validasi.id}, {userId: req.userId}]
+                }
+            })
+        }
+        res.status(200).json({ message: "Update validasi success"})
+    } catch (error) {
+        res.status(500).json({
+            message: error.message
+        })
+    }
 }
