@@ -28,28 +28,7 @@ const Perbaikan = db.define('perbaikan', {
             notEmpty: true
         }
     },
-    image_1: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-            notEmpty: true
-        }
-    },
-    image_2: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-            notEmpty: true
-        }
-    },
-    image_3: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-            notEmpty: true
-        }
-    },
-    image_4: {
+    descper: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
